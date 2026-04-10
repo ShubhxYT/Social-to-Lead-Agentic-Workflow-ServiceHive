@@ -14,8 +14,8 @@ A LangGraph-powered conversational AI agent for **AutoStream**, a fictional SaaS
 
 ```bash
 # 1. Clone and enter the repo
-git clone <repo-url>
-cd <repo-dir>
+git clone https://github.com/ShubhxYT/Social-to-Lead-Agentic-Workflow-ServiceHive
+cd Social-to-Lead-Agentic-Workflow-ServiceHive
 
 # 2. Create and activate a virtual environment
 python -m venv .venv
