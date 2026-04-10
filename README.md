@@ -39,6 +39,47 @@ The Streamlit UI opens at `http://localhost:8501`.
 
 ---
 
+## Docker Deployment
+
+### Local Testing
+
+```bash
+# 1. Build and run with Docker Compose
+docker-compose up -d
+
+# 2. Access the app at http://localhost:8501
+
+# 3. View logs
+docker logs -f servicehive-app
+
+# 4. Stop the container
+docker-compose down
+```
+
+**Note:** The first run automatically ingests the knowledge base. This may take a few minutes.
+
+### Deploy to Coolify
+
+1. **Push to Git:**
+   ```bash
+   git add .
+   git commit -m "Docker configuration"
+   git push
+   ```
+
+2. **In Coolify Dashboard:**
+   - Click "Create New Service" → "Docker Compose"
+   - Connect your Git repository
+   - Coolify auto-detects `docker-compose.yml`
+   - Add environment variable: `GROQ_API_KEY=<your-key>`
+   - Deploy!
+
+3. **Access:** Coolify provides a public URL to your app
+
+**For detailed deployment guidance**, see [DEPLOYMENT.md](DEPLOYMENT.md).
+
+---
+
 ## Architecture
 
 The agent is built on **LangGraph**, a stateful graph execution framework from LangChain. LangGraph was chosen because it supports directed, conditional, and cyclical workflows — essential for multi-turn lead collection where the agent must loop back when user data is incomplete. A simple chain or basic prompt loop cannot cleanly model this branching logic.
