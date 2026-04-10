@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  servicehive:
+    build: .
+    container_name: servicehive-app
+    ports:
+      - "8501:8501"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_HEADLESS=true
+      # Add other environment variables as needed
+    volumes:
+      - ./chroma_db_volume:/app/chroma_db
+      - ./leads.csv:/app/leads.csv
+    restart: unless-stopped
+    # Uncomment if you need to preserve logs
+    # logging:
+    #   driver: "json-file"
+    #   options:
+    #     max-size: "10m"
+    #     max-file: "3"
+
+volumes:
+  chroma_db_volume:
+    driver: local
